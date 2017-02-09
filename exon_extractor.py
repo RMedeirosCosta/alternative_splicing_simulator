@@ -11,20 +11,17 @@ def main():
         exon_identification = argv[2]
         identificator_re = "^.*"+exon_identification+":.*$"
         exon_beginning_re = re.compile("\[\d+")
-        exon_ending_re = "\d+\]"
+        exon_ending_re = re.compile("\d+\]")
         sequence = open(argv[3], "r").read()
 
-        for line in annotation_file:
-            print(line) #debug
-            if re.match(identificator_re, line):                
-                exon_beginning = int(exon_beginning_re.findall(line).replace("[",""))-1
-                print(exon_beginning) #debug
-                exon_ending = int(exon_ending_re.findall(line).replace("]",""))
-                print(exon_ending) #debug
 
-        exon_to_remove = sequence[exon_begining, exon_ending]
-        print(exon_to_remove) #debug
-        new_sequence = sequence.replace(exon_to_remove, "")
+        for line in annotation_file:
+            if re.match(identificator_re, line):                
+                exon_beginning = int(exon_beginning_re.findall(line)[0].replace("[",""))-1
+                exon_ending = int(exon_ending_re.findall(line)[0].replace("]",""))
+
+        exon_to_remove = sequence[exon_beginning:exon_ending]
+        new_sequence = sequence.replace(exon_to_remove, "").replace(" ", "")
         print(new_sequence)
         
     except IOError:

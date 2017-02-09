@@ -14,8 +14,8 @@ def main():
         
         if (read_length > len(sequence)):
             raise RuntimeError("\nWhat kind of dumb are you? You cannot create a read greater than the sequence!\n")
-        if re.match("^[ACGT]*$", sequence) is None:
-            raise RuntimeError("\nThis sequence is invalid. All characters must be A, C, G or T.")
+#        if re.match("^[ACGT]*$", sequence) is None:
+#            raise RuntimeError("\nThis sequence is invalid. All characters must be A, C, G or T.")
 
         for i in range(times):
             max_index = (len(sequence) - read_length)
