@@ -21,7 +21,7 @@ def main():
             max_index = (len(sequence) - read_length)
             index = random.randint(0, max_index)
 
-            print(sequence[index: (index+read_length)])	
+            print(">seq "+str(i)+"\n"+sequence[index: (index+read_length)])	
 
     except IOError:
         print("\nCannot find the file: "+argv[1]+"\n"+ERROR_MESSAGE)
